@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NPCWS — Nagarampalem Police Children Welfare Society</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0d1f3c;
+  --navy-mid: #152d52;
+  --navy-light: #1e3f6e;
+  --gold: #c8962a;
+  --gold-light: #e8b84a;
+  --gold-pale: #f5e6c0;
+  --saffron: #e87c1a;
+  --cream: #faf7f2;
+  --warm-white: #f2ede4;
+  --text: #1a1612;
+  --muted: #6e6458;
+  --border: #ddd5c8;
+  --success: #1a6b3a;
+  --success-bg: #e8f4ed;
+  --warning: #b85c00;
+  --warning-bg: #fff3e0;
+  --danger: #8b1a1a;
+  --danger-bg: #fdeaea;
+  --card-shadow: 0 2px 16px rgba(13,31,60,0.10);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); font-weight: 300; }
+
+/* ── NAV ── */
+nav {
+  background: var(--navy);
+  position: sticky; top: 0; z-index: 100;
+  border-bottom: 3px solid var(--gold);
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem; height: 68px;
+}
+.nav-brand { display: flex; align-items: center; gap: 0.9rem; text-decoration: none; }
+.nav-emblem {
+  width: 44px; height: 44px;
+  background: var(--gold);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; flex-shrink: 0;
+}
+.nav-title { line-height: 1.1; }
+.nav-title .abbr { font-family: 'Crimson Pro', serif; font-size: 1.3rem; font-weight: 600; color: #fff; letter-spacing: 0.05em; }
+.nav-title .full { font-size: 0.58rem; color: rgba(255,255,255,0.55); letter-spacing: 0.08em; text-transform: uppercase; }
+.nav-links { display: flex; align-items: center; gap: 0.2rem; }
+.nav-links a {
+  color: rgba(255,255,255,0.65); text-decoration: none;
+  font-size: 0.78rem; letter-spacing: 0.04em;
+  padding: 0.5rem 0.9rem; border-radius: 4px;
+  transition: all 0.2s;
+}
+.nav-links a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+.nav-links a.active { color: var(--gold-light); }
+.btn-login {
+  background: var(--gold); color: var(--navy) !important;
+  font-weight: 600 !important; border-radius: 4px !important;
+  padding: 0.45rem 1.1rem !important;
+}
+.btn-login:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 50%, #0a1628 100%);
+  padding: 5rem 2rem 4rem;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 90% 50%, rgba(200,150,42,0.08) 0%, transparent 70%);
+}
+.hero-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; position: relative; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(200,150,42,0.15); border: 1px solid rgba(200,150,42,0.3);
+  color: var(--gold-light); font-size: 0.7rem; letter-spacing: 0.12em;
+  text-transform: uppercase; padding: 0.35rem 0.8rem; border-radius: 100px;
+  margin-bottom: 1.2rem;
+}
+.hero h1 { font-family: 'Crimson Pro', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 400; color: #fff; line-height: 1.2; margin-bottom: 1rem; }
+.hero h1 em { font-style: italic; color: var(--gold-light); }
+.hero p { font-size: 0.92rem; color: rgba(255,255,255,0.6); line-height: 1.75; margin-bottom: 2rem; max-width: 440px; }
+.hero-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+.btn-hero-primary {
+  background: var(--gold); color: var(--navy); padding: 0.8rem 1.8rem;
+  border-radius: 4px; text-decoration: none; font-size: 0.82rem;
+  font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  transition: all 0.2s;
+}
+.btn-hero-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+.btn-hero-ghost {
+  color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.2);
+  padding: 0.8rem 1.8rem; border-radius: 4px; text-decoration: none;
+  font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase;
+  transition: all 0.2s;
+}
+.btn-hero-ghost:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+
+/* Stats card */
+.hero-stats {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px; padding: 2rem;
+  backdrop-filter: blur(10px);
+}
+.hero-stats h3 { font-family: 'Crimson Pro', serif; font-size: 1.2rem; color: var(--gold-light); margin-bottom: 1.4rem; font-weight: 400; }
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.stat-box {
+  background: rgba(255,255,255,0.05); border-radius: 8px;
+  padding: 1rem; text-align: center;
+}
+.stat-num { font-family: 'Crimson Pro', serif; font-size: 2rem; color: var(--gold-light); font-weight: 400; display: block; line-height: 1; }
+.stat-label { font-size: 0.68rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.3rem; }
+.member-status-preview {
+  margin-top: 1.4rem; padding-top: 1.4rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.status-row { display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 0; }
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 0.5rem; }
+.status-row span { font-size: 0.78rem; color: rgba(255,255,255,0.65); }
+.status-count { font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.85); }
+
+/* ── MAIN CONTENT ── */
+.main { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; }
+
+/* ── SECTION HEADER ── */
+.section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 1.5rem; }
+.section-title { font-family: 'Crimson Pro', serif; font-size: 1.7rem; font-weight: 400; color: var(--navy); }
+.section-title span { font-style: italic; color: var(--gold); }
+.section-link { font-size: 0.75rem; color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(200,150,42,0.3); padding-bottom: 1px; }
+
+/* ── TABS ── */
+.tab-bar { display: flex; gap: 0; border-bottom: 2px solid var(--border); margin-bottom: 2rem; }
+.tab {
+  padding: 0.7rem 1.4rem; font-size: 0.8rem; font-weight: 500;
+  color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent;
+  margin-bottom: -2px; transition: all 0.2s; white-space: nowrap;
+  letter-spacing: 0.03em;
+}
+.tab:hover { color: var(--navy); }
+.tab.active { color: var(--navy); border-bottom-color: var(--gold); font-weight: 600; }
+
+/* ── DASHBOARD GRID ── */
+.dashboard-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 2rem; }
+.metric-card {
+  background: #fff; border-radius: 8px; padding: 1.4rem;
+  box-shadow: var(--card-shadow); border-left: 4px solid transparent;
+  position: relative; overflow: hidden;
+}
+.metric-card.gold { border-left-color: var(--gold); }
+.metric-card.navy { border-left-color: var(--navy); }
+.metric-card.green { border-left-color: var(--success); }
+.metric-card.orange { border-left-color: var(--saffron); }
+.metric-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.5rem; }
+.metric-value { font-family: 'Crimson Pro', serif; font-size: 2.2rem; font-weight: 400; color: var(--navy); line-height: 1; }
+.metric-sub { font-size: 0.72rem; color: var(--muted); margin-top: 0.3rem; }
+.metric-icon { position: absolute; right: 1rem; top: 1rem; font-size: 1.6rem; opacity: 0.15; }
+
+/* ── MEMBER TABLE ── */
+.table-card { background: #fff; border-radius: 8px; box-shadow: var(--card-shadow); overflow: hidden; margin-bottom: 2rem; }
+.table-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.2rem 1.5rem; border-bottom: 1px solid var(--border);
+  background: var(--warm-white);
+}
+.table-header h3 { font-family: 'Crimson Pro', serif; font-size: 1.1rem; font-weight: 600; color: var(--navy); }
+.search-bar {
+  display: flex; align-items: center; gap: 0.5rem;
+  background: #fff; border: 1px solid var(--border); border-radius: 4px;
+  padding: 0.4rem 0.8rem;
+}
+.search-bar input { border: none; outline: none; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; width: 180px; background: transparent; }
+table { width: 100%; border-collapse: collapse; }
+th {
+  background: #f5f0e8; font-size: 0.67rem; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--muted); font-weight: 600;
+  padding: 0.7rem 1rem; text-align: left; border-bottom: 1px solid var(--border);
+}
+td { padding: 0.85rem 1rem; font-size: 0.82rem; border-bottom: 1px solid #f0ebe2; color: var(--text); }
+tr:hover td { background: #faf7f2; }
+tr:last-child td { border-bottom: none; }
+.avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--navy); color: var(--gold-light);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 0.72rem; font-weight: 600; flex-shrink: 0;
+}
+.member-cell { display: flex; align-items: center; gap: 0.7rem; }
+.member-name { font-weight: 500; font-size: 0.84rem; }
+.member-id { font-size: 0.68rem; color: var(--muted); }
+
+/* ── STATUS BADGES ── */
+.badge {
+  display: inline-block; font-size: 0.62rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 0.22rem 0.65rem; border-radius: 100px;
+}
+.badge-active { background: var(--success-bg); color: var(--success); }
+.badge-pending { background: var(--warning-bg); color: var(--warning); }
+.badge-expired { background: var(--danger-bg); color: var(--danger); }
+.badge-approved { background: #e8f0fe; color: #1a56c8; }
+
+/* ── ACTION BUTTONS ── */
+.action-btn {
+  font-size: 0.7rem; font-weight: 600; padding: 0.28rem 0.7rem;
+  border-radius: 3px; border: none; cursor: pointer; transition: all 0.2s;
+  text-decoration: none; display: inline-block;
+}
+.action-approve { background: var(--success-bg); color: var(--success); }
+.action-approve:hover { background: var(--success); color: #fff; }
+.action-reject { background: var(--danger-bg); color: var(--danger); }
+.action-reject:hover { background: var(--danger); color: #fff; }
+.action-view { background: #e8f0fe; color: #1a56c8; }
+.action-view:hover { background: #1a56c8; color: #fff; }
+
+/* ── TWO-COL LAYOUT ── */
+.two-col { display: grid; grid-template-columns: 1.6fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+
+/* ── NOTIFICATION FEED ── */
+.notif-card { background: #fff; border-radius: 8px; box-shadow: var(--card-shadow); overflow: hidden; }
+.notif-header { padding: 1rem 1.2rem; border-bottom: 1px solid var(--border); background: var(--warm-white); }
+.notif-header h3 { font-family: 'Crimson Pro', serif; font-size: 1.05rem; font-weight: 600; color: var(--navy); }
+.notif-list { }
+.notif-item {
+  display: flex; align-items: flex-start; gap: 0.8rem;
+  padding: 0.9rem 1.2rem; border-bottom: 1px solid #f0ebe2;
+  transition: background 0.15s;
+}
+.notif-item:hover { background: #faf7f2; }
+.notif-item:last-child { border-bottom: none; }
+.notif-icon {
+  width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 0.9rem;
+}
+.notif-icon.green { background: var(--success-bg); }
+.notif-icon.amber { background: var(--warning-bg); }
+.notif-icon.blue { background: #e8f0fe; }
+.notif-icon.red { background: var(--danger-bg); }
+.notif-text { font-size: 0.8rem; line-height: 1.45; color: var(--text); }
+.notif-text strong { font-weight: 600; }
+.notif-time { font-size: 0.67rem; color: var(--muted); margin-top: 0.2rem; }
+
+/* ── SCHEME CARDS ── */
+.schemes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem; }
+.scheme-card {
+  background: #fff; border-radius: 8px; box-shadow: var(--card-shadow);
+  padding: 1.6rem; border-top: 4px solid transparent; position: relative; overflow: hidden;
+}
+.scheme-card.housing { border-top-color: var(--navy); }
+.scheme-card.health { border-top-color: var(--success); }
+.scheme-card::after {
+  content: ''; position: absolute; right: -20px; bottom: -20px;
+  width: 100px; height: 100px; border-radius: 50%;
+  opacity: 0.05;
+}
+.scheme-card.housing::after { background: var(--navy); }
+.scheme-card.health::after { background: var(--success); }
+.scheme-icon { font-size: 2rem; margin-bottom: 0.8rem; display: block; }
+.scheme-title { font-family: 'Crimson Pro', serif; font-size: 1.2rem; font-weight: 600; color: var(--navy); margin-bottom: 0.4rem; }
+.scheme-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; margin-bottom: 1.2rem; }
+.scheme-stats { display: flex; gap: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+.scheme-stat-num { font-family: 'Crimson Pro', serif; font-size: 1.4rem; color: var(--navy); display: block; }
+.scheme-stat-label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.btn-scheme {
+  display: inline-block; margin-top: 0.8rem; padding: 0.5rem 1.2rem;
+  border-radius: 4px; font-size: 0.75rem; font-weight: 600;
+  text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em;
+  transition: all 0.2s;
+}
+.btn-scheme.navy { background: var(--navy); color: #fff; }
+.btn-scheme.navy:hover { background: var(--navy-light); }
+.btn-scheme.green { background: var(--success); color: #fff; }
+.btn-scheme.green:hover { background: #155a30; }
+
+/* ── MEMBER PROFILE CARD ── */
+.profile-card {
+  background: #fff; border-radius: 8px; box-shadow: var(--card-shadow);
+  overflow: hidden; margin-bottom: 1.5rem;
+}
+.profile-header {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  padding: 2rem; text-align: center;
+  border-bottom: 3px solid var(--gold);
+}
+.profile-avatar {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: var(--gold); border: 3px solid rgba(255,255,255,0.3);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 1.8rem; margin-bottom: 0.8rem;
+}
+.profile-name { font-family: 'Crimson Pro', serif; font-size: 1.3rem; color: #fff; font-weight: 400; }
+.profile-id { font-size: 0.72rem; color: var(--gold-light); letter-spacing: 0.08em; margin-top: 0.2rem; }
+.profile-body { padding: 1.4rem; }
+.profile-field { display: flex; justify-content: space-between; align-items: center; padding: 0.55rem 0; border-bottom: 1px solid #f0ebe2; }
+.profile-field:last-child { border-bottom: none; }
+.field-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.field-value { font-size: 0.82rem; font-weight: 500; color: var(--text); }
+
+/* ── ID CARD PREVIEW ── */
+.id-card-preview {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+  border-radius: 10px; padding: 1.4rem; color: #fff;
+  border: 2px solid var(--gold); position: relative; overflow: hidden;
+}
+.id-card-preview::before {
+  content: ''; position: absolute; right: -30px; top: -30px;
+  width: 120px; height: 120px; border-radius: 50%;
+  background: rgba(200,150,42,0.1); border: 1px solid rgba(200,150,42,0.2);
+}
+.id-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1rem; }
+.id-org { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-light); opacity: 0.8; }
+.id-title { font-family: 'Crimson Pro', serif; font-size: 0.95rem; color: #fff; margin-top: 0.2rem; }
+.id-photo { width: 48px; height: 48px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+.id-name { font-family: 'Crimson Pro', serif; font-size: 1.4rem; font-weight: 600; color: #fff; margin-bottom: 0.2rem; }
+.id-detail { font-size: 0.7rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
+.id-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; padding-top: 0.8rem; border-top: 1px solid rgba(255,255,255,0.15); }
+.id-validity { font-size: 0.65rem; color: rgba(255,255,255,0.5); }
+.id-validity strong { color: var(--gold-light); display: block; font-size: 0.75rem; }
+.id-badge-active { background: rgba(26,107,58,0.4); color: #7ec8a0; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.25rem 0.7rem; border-radius: 100px; border: 1px solid rgba(126,200,160,0.3); }
+.download-btn { display: flex; align-items: center; gap: 0.4rem; background: var(--gold); color: var(--navy); font-size: 0.72rem; font-weight: 700; padding: 0.5rem 1rem; border-radius: 4px; border: none; cursor: pointer; margin-top: 0.8rem; width: 100%; justify-content: center; letter-spacing: 0.06em; text-transform: uppercase; transition: background 0.2s; }
+.download-btn:hover { background: var(--gold-light); }
+
+/* ── QUERY MODULE ── */
+.query-form { background: #fff; border-radius: 8px; box-shadow: var(--card-shadow); padding: 1.5rem; margin-bottom: 1.5rem; }
+.form-title { font-family: 'Crimson Pro', serif; font-size: 1.1rem; font-weight: 600; color: var(--navy); margin-bottom: 1.2rem; }
+.form-group { margin-bottom: 1rem; }
+.form-label { display: block; font-size: 0.72rem; font-weight: 600; color: var(--text); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.4rem; }
+.form-control {
+  width: 100%; padding: 0.65rem 0.9rem; border: 1px solid var(--border);
+  border-radius: 4px; font-family: 'DM Sans', sans-serif; font-size: 0.84rem;
+  color: var(--text); background: #fff; outline: none;
+  transition: border-color 0.2s;
+}
+.form-control:focus { border-color: var(--gold); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.submit-btn {
+  background: var(--navy); color: #fff; border: none;
+  padding: 0.7rem 1.6rem; border-radius: 4px; font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem; font-weight: 600; cursor: pointer; letter-spacing: 0.06em;
+  text-transform: uppercase; transition: background 0.2s;
+}
+.submit-btn:hover { background: var(--navy-light); }
+
+/* ── ANNOUNCEMENTS ── */
+.announcement-item {
+  background: #fff; border-radius: 8px; padding: 1.2rem 1.4rem;
+  box-shadow: var(--card-shadow); margin-bottom: 0.8rem;
+  border-left: 4px solid var(--gold); display: flex; gap: 1rem; align-items: flex-start;
+}
+.announcement-item.urgent { border-left-color: var(--saffron); }
+.ann-date { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap; padding-top: 2px; min-width: 60px; text-align: center; }
+.ann-day { font-family: 'Crimson Pro', serif; font-size: 1.6rem; color: var(--navy); display: block; line-height: 1; }
+.ann-content { }
+.ann-tag { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); background: var(--gold-pale); padding: 0.15rem 0.5rem; border-radius: 2px; display: inline-block; margin-bottom: 0.3rem; }
+.ann-title { font-size: 0.9rem; font-weight: 600; color: var(--navy); margin-bottom: 0.2rem; }
+.ann-body { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+/* ── AUTOPAY BANNER ── */
+.autopay-banner {
+  background: linear-gradient(135deg, #1a6b3a 0%, #145530 100%);
+  border-radius: 8px; padding: 1.4rem 1.8rem;
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 2rem; box-shadow: var(--card-shadow);
+}
+.autopay-text h4 { color: #fff; font-size: 0.95rem; font-weight: 600; margin-bottom: 0.2rem; }
+.autopay-text p { color: rgba(255,255,255,0.7); font-size: 0.78rem; }
+.btn-autopay { background: #fff; color: var(--success); font-size: 0.75rem; font-weight: 700; padding: 0.6rem 1.4rem; border-radius: 4px; border: none; cursor: pointer; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; transition: all 0.2s; }
+.btn-autopay:hover { background: var(--gold-pale); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--navy); color: rgba(255,255,255,0.6);
+  padding: 2.5rem 2rem 1.5rem; margin-top: 3rem;
+  border-top: 3px solid var(--gold);
+}
+.footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; }
+.footer-brand .name { font-family: 'Crimson Pro', serif; font-size: 1.1rem; color: #fff; display: block; margin-bottom: 0.2rem; }
+.footer-brand p { font-size: 0.75rem; line-height: 1.65; color: rgba(255,255,255,0.5); margin-top: 0.5rem; }
+.footer-col h4 { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-light); font-weight: 600; margin-bottom: 0.8rem; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 0.4rem; }
+.footer-col ul li a { font-size: 0.78rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+.footer-col ul li a:hover { color: #fff; }
+.footer-bottom { max-width: 1200px; margin: 1.5rem auto 0; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; }
+.footer-bottom p { font-size: 0.7rem; color: rgba(255,255,255,0.35); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+.fade-in { animation: fadeIn 0.5s ease both; }
+.fade-in-2 { animation: fadeIn 0.5s 0.1s ease both; }
+.fade-in-3 { animation: fadeIn 0.5s 0.2s ease both; }
+
+/* ── TAB PANELS ── */
+.tab-panel { display: none; }
+.tab-panel.active { display: block; animation: fadeIn 0.3s ease; }
+
+/* ── AI AGENT BADGE ── */
+.ai-badge {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: linear-gradient(135deg, #0d1f3c, #1e3f6e);
+  color: var(--gold-light); font-size: 0.6rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.2rem 0.6rem; border-radius: 100px;
+  border: 1px solid rgba(200,150,42,0.3);
+}
+.ai-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold-light); animation: pulse 2s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">
+      <div class="nav-emblem">🛡️</div>
+      <div class="nav-title">
+        <div class="abbr">NPCWS</div>
+        <div class="full">Nagarampalem Police Children Welfare Society</div>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#" class="active">Home</a>
+      <a href="#membership">Membership</a>
+      <a href="#schemes">Schemes</a>
+      <a href="#news">News</a>
+      <a href="#queries">Queries</a>
+      <a href="#" class="btn-login">Member Login</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">🛡️ Established for Police Families</div>
+      <h1>Welfare & Progress for <em>Police Children</em> of Nagarampalem</h1>
+      <p>A dedicated welfare society supporting police personnel and their families through housing schemes, health benefits, education support, and community membership.</p>
+      <div class="hero-actions">
+        <a href="#register" class="btn-hero-primary">Register Now</a>
+        <a href="#membership" class="btn-hero-ghost">Member Portal →</a>
+      </div>
+    </div>
+    <div class="hero-stats fade-in-2">
+      <h3>Society Overview</h3>
+      <div class="stats-grid">
+        <div class="stat-box">
+          <span class="stat-num">1,240</span>
+          <div class="stat-label">Total Members</div>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">98%</span>
+          <div class="stat-label">Renewal Rate</div>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">₹42L</span>
+          <div class="stat-label">Schemes Disbursed</div>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">18</span>
+          <div class="stat-label">Years Active</div>
+        </div>
+      </div>
+      <div class="member-status-preview">
+        <div class="status-row">
+          <span><span class="status-dot" style="background:#2e9e5e"></span>Active Members</span>
+          <span class="status-count">1,087</span>
+        </div>
+        <div class="status-row">
+          <span><span class="status-dot" style="background:#e8941a"></span>Pending Approval</span>
+          <span class="status-count">34</span>
+        </div>
+        <div class="status-row">
+          <span><span class="status-dot" style="background:#c84b2e"></span>Subscription Due</span>
+          <span class="status-count">119</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- TABS -->
+  <div class="tab-bar">
+    <div class="tab active" onclick="switchTab('dashboard', this)">Admin Dashboard</div>
+    <div class="tab" onclick="switchTab('members', this)">Member Registry</div>
+    <div class="tab" onclick="switchTab('profile', this)">My Profile & ID Card</div>
+    <div class="tab" onclick="switchTab('schemes', this)">Scheme Enrollment</div>
+    <div class="tab" onclick="switchTab('queries', this)">Queries & News</div>
+  </div>
+
+  <!-- ── DASHBOARD TAB ── -->
+  <div id="tab-dashboard" class="tab-panel active">
+
+    <!-- Metric cards -->
+    <div class="dashboard-grid fade-in">
+      <div class="metric-card gold">
+        <div class="metric-icon">💰</div>
+        <div class="metric-label">Subscriptions Collected (2026)</div>
+        <div class="metric-value">₹12.4L</div>
+        <div class="metric-sub">↑ 8% vs last year</div>
+      </div>
+      <div class="metric-card navy">
+        <div class="metric-icon">📋</div>
+        <div class="metric-label">Pending Approvals</div>
+        <div class="metric-value">34</div>
+        <div class="metric-sub">12 new today · <a href="#" style="color:var(--gold);font-size:0.72rem">Review now</a></div>
+      </div>
+      <div class="metric-card green">
+        <div class="metric-icon">🏠</div>
+        <div class="metric-label">Housing Scheme Applicants</div>
+        <div class="metric-value">218</div>
+        <div class="metric-sub">42 pending review</div>
+      </div>
+      <div class="metric-card orange">
+        <div class="metric-icon">⚠️</div>
+        <div class="metric-label">Expiring in 30 days</div>
+        <div class="metric-value">119</div>
+        <div class="metric-sub"><span class="ai-badge"><span class="ai-dot"></span>AI Reminders Sent: 89</span></div>
+      </div>
+      <div class="metric-card navy">
+        <div class="metric-icon">🏥</div>
+        <div class="metric-label">Health Scheme Members</div>
+        <div class="metric-value">456</div>
+        <div class="metric-sub">31 claims this month</div>
+      </div>
+      <div class="metric-card gold">
+        <div class="metric-icon">💬</div>
+        <div class="metric-label">Open Queries</div>
+        <div class="metric-value">28</div>
+        <div class="metric-sub"><span class="ai-badge"><span class="ai-dot"></span>AI Resolved: 14</span></div>
+      </div>
+    </div>
+
+    <!-- AI Agents Status -->
+    <div class="table-card fade-in-2" style="margin-bottom:1.5rem">
+      <div class="table-header">
+        <h3>🤖 AI Agent Activity</h3>
+        <span style="font-size:0.72rem;color:var(--muted)">Powered by Aksha Digital Foundation</span>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Agent</th><th>Function</th><th>Actions Today</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Document Verification Agent</strong></td>
+            <td style="color:var(--muted);font-size:0.78rem">OCR + cross-check Aadhaar/Police ID uploads</td>
+            <td>23 docs reviewed, 3 flagged</td>
+            <td><span class="badge badge-active">Active</span></td>
+          </tr>
+          <tr>
+            <td><strong>Renewal Reminder Agent</strong></td>
+            <td style="color:var(--muted);font-size:0.78rem">30/15/7-day SMS + email with payment links</td>
+            <td>89 reminders sent</td>
+            <td><span class="badge badge-active">Active</span></td>
+          </tr>
+          <tr>
+            <td><strong>Query Resolution Agent</strong></td>
+            <td style="color:var(--muted);font-size:0.78rem">Auto-resolve common queries, escalate complex</td>
+            <td>14 resolved, 6 escalated</td>
+            <td><span class="badge badge-active">Active</span></td>
+          </tr>
+          <tr>
+            <td><strong>Scheme Eligibility Agent</strong></td>
+            <td style="color:var(--muted);font-size:0.78rem">Check tenure + payment history for scheme applications</td>
+            <td>8 eligibility reports generated</td>
+            <td><span class="badge badge-active">Active</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Notifications -->
+    <div class="two-col fade-in-3">
+      <div class="notif-card">
+        <div class="notif-header"><h3>Recent Activity</h3></div>
+        <div class="notif-list">
+          <div class="notif-item">
+            <div class="notif-icon green">✅</div>
+            <div>
+              <div class="notif-text"><strong>K. Suresh Babu</strong> — Profile approved & membership activated</div>
+              <div class="notif-time">2 mins ago</div>
+            </div>
+          </div>
+          <div class="notif-item">
+            <div class="notif-icon amber">🔔</div>
+            <div>
+              <div class="notif-text"><strong>89 members</strong> — Renewal reminder sent (30-day batch)</div>
+              <div class="notif-time">14 mins ago</div>
+            </div>
+          </div>
+          <div class="notif-item">
+            <div class="notif-icon blue">📄</div>
+            <div>
+              <div class="notif-text"><strong>V. Rama Devi</strong> — Housing scheme application submitted</div>
+              <div class="notif-time">1 hr ago</div>
+            </div>
+          </div>
+          <div class="notif-item">
+            <div class="notif-icon red">⚠️</div>
+            <div>
+              <div class="notif-text"><strong>3 documents</strong> — Aadhaar/ID mismatch flagged by AI agent for review</div>
+              <div class="notif-time">2 hrs ago</div>
+            </div>
+          </div>
+          <div class="notif-item">
+            <div class="notif-icon green">💳</div>
+            <div>
+              <div class="notif-text"><strong>P. Venkata Rao</strong> — Annual subscription payment received ₹1,200</div>
+              <div class="notif-time">3 hrs ago</div>
+            </div>
+          </div>
+          <div class="notif-item">
+            <div class="notif-icon blue">💬</div>
+            <div>
+              <div class="notif-text"><strong>14 queries</strong> — Auto-resolved by AI agent (certificate downloads, payment status)</div>
+              <div class="notif-time">4 hrs ago</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="autopay-banner">
+          <div class="autopay-text">
+            <h4>🔄 Auto-Renewal Enabled</h4>
+            <p>342 members opted into autopay. Next batch deduction: March 15, 2026</p>
+          </div>
+        </div>
+        <div class="notif-card">
+          <div class="notif-header"><h3>Pending Admin Actions</h3></div>
+          <div class="notif-list">
+            <div class="notif-item">
+              <div class="notif-icon amber">📋</div>
+              <div style="flex:1">
+                <div class="notif-text"><strong>34</strong> member profiles awaiting document review</div>
+                <div class="notif-time"><a href="#" style="color:var(--gold);font-size:0.7rem">Review now →</a></div>
+              </div>
+            </div>
+            <div class="notif-item">
+              <div class="notif-icon blue">🏠</div>
+              <div style="flex:1">
+                <div class="notif-text"><strong>42</strong> Housing scheme applications pending eligibility check</div>
+                <div class="notif-time"><a href="#" style="color:var(--gold);font-size:0.7rem">Process →</a></div>
+              </div>
+            </div>
+            <div class="notif-item">
+              <div class="notif-icon red">💬</div>
+              <div style="flex:1">
+                <div class="notif-text"><strong>6 queries</strong> escalated by AI — need human response</div>
+                <div class="notif-time"><a href="#" style="color:var(--gold);font-size:0.7rem">Respond →</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MEMBER REGISTRY TAB ── -->
+  <div id="tab-members" class="tab-panel">
+    <div class="table-card">
+      <div class="table-header">
+        <h3>Member Registry</h3>
+        <div class="search-bar">
+          🔍 <input type="text" placeholder="Search by name, ID, rank...">
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Member</th>
+            <th>Rank / Unit</th>
+            <th>Membership Status</th>
+            <th>Subscription</th>
+            <th>Joined</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="member-cell">
+                <div class="avatar">SK</div>
+                <div><div class="member-name">K. Suresh Babu</div><div class="member-id">NPCWS-2024-0891</div></div>
+              </div>
+            </td>
+            <td>SI · Nagarampalem PS</td>
+            <td><span class="badge badge-active">Active</span></td>
+            <td>Paid · Mar 2026</td>
+            <td>Jan 2024</td>
+            <td><a href="#" class="action-btn action-view">View</a></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="member-cell">
+                <div class="avatar">VR</div>
+                <div><div class="member-name">V. Rama Devi</div><div class="member-id">NPCWS-2023-0734</div></div>
+              </div>
+            </td>
+            <td>HC · Traffic Division</td>
+            <td><span class="badge badge-active">Active</span></td>
+            <td>Paid · Feb 2026</td>
+            <td>Aug 2023</td>
+            <td><a href="#" class="action-btn action-view">View</a></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="member-cell">
+                <div class="avatar">PM</div>
+                <div><div class="member-name">P. Murali Krishna</div><div class="member-id">NPCWS-2025-1024</div></div>
+              </div>
+            </td>
+            <td>PC · Nagarampalem PS</td>
+            <td><span class="badge badge-pending">Pending Approval</span></td>
+            <td>—</td>
+            <td>Mar 2026</td>
+            <td>
+              <a href="#" class="action-btn action-approve">Approve</a>&nbsp;
+              <a href="#" class="action-btn action-reject">Reject</a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="member-cell">
+                <div class="avatar">LN</div>
+                <div><div class="member-name">L. Nageswara Rao</div><div class="member-id">NPCWS-2022-0412</div></div>
+              </div>
+            </td>
+            <td>DSP · Circle Office</td>
+            <td><span class="badge badge-expired">Subscription Due</span></td>
+            <td>Due · Expired Jan 2026</td>
+            <td>May 2022</td>
+            <td><a href="#" class="action-btn action-view">View</a></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="member-cell">
+                <div class="avatar">GS</div>
+                <div><div class="member-name">G. Srinivasa Rao</div><div class="member-id">NPCWS-2024-0956</div></div>
+              </div>
+            </td>
+            <td>ASI · Nagarampalem PS</td>
+            <td><span class="badge badge-pending">Pending Approval</span></td>
+            <td>—</td>
+            <td>Feb 2026</td>
+            <td>
+              <a href="#" class="action-btn action-approve">Approve</a>&nbsp;
+              <a href="#" class="action-btn action-reject">Reject</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── PROFILE & ID CARD TAB ── -->
+  <div id="tab-profile" class="tab-panel">
+    <div class="two-col">
+      <div>
+        <div class="profile-card">
+          <div class="profile-header">
+            <div class="profile-avatar">👮</div>
+            <div class="profile-name">K. Suresh Babu</div>
+            <div class="profile-id">NPCWS-2024-0891 · Member Since Jan 2024</div>
+          </div>
+          <div class="profile-body">
+            <div class="profile-field"><span class="field-label">Father's Name</span><span class="field-value">K. Rama Rao</span></div>
+            <div class="profile-field"><span class="field-label">Date of Birth</span><span class="field-value">14 March 1982</span></div>
+            <div class="profile-field"><span class="field-label">Gender</span><span class="field-value">Male</span></div>
+            <div class="profile-field"><span class="field-label">Mobile</span><span class="field-value">+91 98765 43210</span></div>
+            <div class="profile-field"><span class="field-label">Rank / Unit</span><span class="field-value">Sub-Inspector · Nagarampalem PS</span></div>
+            <div class="profile-field"><span class="field-label">Aadhaar</span><span class="field-value">XXXX XXXX 4521 (Verified ✓)</span></div>
+            <div class="profile-field"><span class="field-label">Membership Status</span><span class="field-value"><span class="badge badge-active">Active</span></span></div>
+            <div class="profile-field"><span class="field-label">Subscription Valid Until</span><span class="field-value">31 Dec 2026</span></div>
+          </div>
+        </div>
+        <div class="query-form" style="padding:1.2rem">
+          <div class="form-title">Edit Profile</div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Mobile Number</label><input class="form-control" value="+91 98765 43210"></div>
+            <div class="form-group"><label class="form-label">Email ID</label><input class="form-control" value="suresh.babu@gmail.com"></div>
+          </div>
+          <div class="form-group"><label class="form-label">Address</label><input class="form-control" value="D.No. 12-4, Nagarampalem, Guntur - 522004"></div>
+          <button class="submit-btn">Save Changes</button>
+        </div>
+      </div>
+      <div>
+        <!-- Digital ID Card -->
+        <div style="margin-bottom:1rem">
+          <div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.7rem;font-weight:600">Digital Member ID Card</div>
+          <div class="id-card-preview">
+            <div class="id-top">
+              <div>
+                <div class="id-org">Nagarampalem Police Children Welfare Society</div>
+                <div class="id-title">Member Identity Card</div>
+              </div>
+              <div class="id-photo">👮</div>
+            </div>
+            <div class="id-name">K. Suresh Babu</div>
+            <div class="id-detail">
+              Member ID: NPCWS-2024-0891<br>
+              Rank: Sub-Inspector · Nagarampalem PS<br>
+              Aadhaar: XXXX XXXX 4521
+            </div>
+            <div class="id-footer">
+              <div class="id-validity">
+                Valid Until
+                <strong>31 Dec 2026</strong>
+              </div>
+              <span class="id-badge-active">● Active</span>
+            </div>
+          </div>
+          <button class="download-btn">⬇ Download ID Card (PDF)</button>
+        </div>
+        <!-- Subscription Certificate -->
+        <div class="notif-card">
+          <div class="notif-header"><h3>Subscription Certificate</h3></div>
+          <div class="notif-list">
+            <div class="notif-item">
+              <div class="notif-icon green">📜</div>
+              <div style="flex:1">
+                <div class="notif-text"><strong>Annual Subscription 2026</strong> — ₹1,200 paid on 01 Jan 2026</div>
+                <div class="notif-time"><a href="#" style="color:var(--gold);font-size:0.7rem">⬇ Download Certificate PDF</a></div>
+              </div>
+            </div>
+            <div class="notif-item">
+              <div class="notif-icon green">📜</div>
+              <div style="flex:1">
+                <div class="notif-text"><strong>Annual Subscription 2025</strong> — ₹1,200 paid on 03 Jan 2025</div>
+                <div class="notif-time"><a href="#" style="color:var(--gold);font-size:0.7rem">⬇ Download Certificate PDF</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SCHEMES TAB ── -->
+  <div id="tab-schemes" class="tab-panel">
+    <div class="schemes-grid">
+      <div class="scheme-card housing">
+        <span class="scheme-icon">🏠</span>
+        <div class="scheme-title">Housing Scheme</div>
+        <div class="scheme-desc">Financial assistance and allocation support for police personnel seeking affordable housing. Applicants must have completed 2+ years of active membership.</div>
+        <div class="scheme-stats">
+          <div><span class="scheme-stat-num">218</span><span class="scheme-stat-label">Enrolled</span></div>
+          <div><span class="scheme-stat-num">42</span><span class="scheme-stat-label">Pending</span></div>
+          <div><span class="scheme-stat-num">₹28L</span><span class="scheme-stat-label">Disbursed</span></div>
+        </div>
+        <a href="#" class="btn-scheme navy">Apply for Housing Scheme</a>
+      </div>
+      <div class="scheme-card health">
+        <span class="scheme-icon">🏥</span>
+        <div class="scheme-title">Health Scheme</div>
+        <div class="scheme-desc">Medical coverage and reimbursement for police personnel and dependents. Includes hospitalization, outpatient care, and specialist consultations.</div>
+        <div class="scheme-stats">
+          <div><span class="scheme-stat-num">456</span><span class="scheme-stat-label">Enrolled</span></div>
+          <div><span class="scheme-stat-num">31</span><span class="scheme-stat-label">Claims (Mar)</span></div>
+          <div><span class="scheme-stat-num">₹14L</span><span class="scheme-stat-label">Disbursed</span></div>
+        </div>
+        <a href="#" class="btn-scheme green">Apply for Health Scheme</a>
+      </div>
+    </div>
+    <!-- Housing Scheme Form -->
+    <div class="query-form">
+      <div class="form-title">🏠 Housing Scheme Application</div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Member ID</label><input class="form-control" value="NPCWS-2024-0891" readonly></div>
+        <div class="form-group"><label class="form-label">Membership Duration</label><input class="form-control" value="2 Years 3 Months" readonly></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Plot / Flat Preference</label>
+          <select class="form-control"><option>Residential Plot</option><option>Flat / Apartment</option></select>
+        </div>
+        <div class="form-group"><label class="form-label">Preferred Location</label><input class="form-control" placeholder="e.g. Nagarampalem, Guntur"></div>
+      </div>
+      <div class="form-group"><label class="form-label">Upload Supporting Documents (Income proof, existing property details)</label><input type="file" class="form-control"></div>
+      <div style="background:var(--success-bg);border-radius:4px;padding:0.7rem 1rem;margin-bottom:1rem;font-size:0.78rem;color:var(--success)">
+        <span class="ai-badge" style="margin-right:0.5rem"><span class="ai-dot"></span>AI Agent</span> Eligibility check: <strong>Eligible</strong> — 2+ years membership, payments current.
+      </div>
+      <button class="submit-btn">Submit Application</button>
+    </div>
+  </div>
+
+  <!-- ── QUERIES & NEWS TAB ── -->
+  <div id="tab-queries" class="tab-panel">
+    <div class="two-col">
+      <div>
+        <div class="section-header"><h2 class="section-title">Announcements & <span>News</span></h2></div>
+        <div class="announcement-item">
+          <div class="ann-date"><span class="ann-day">07</span>Mar 2026</div>
+          <div class="ann-content">
+            <span class="ann-tag">Important</span>
+            <div class="ann-title">Annual General Body Meeting — March 20, 2026</div>
+            <div class="ann-body">All members are requested to attend the AGM at Nagarampalem Police Station Community Hall at 10:00 AM.</div>
+          </div>
+        </div>
+        <div class="announcement-item urgent">
+          <div class="ann-date"><span class="ann-day">01</span>Mar 2026</div>
+          <div class="ann-content">
+            <span class="ann-tag" style="background:#fff3e0;color:var(--saffron)">Renewal</span>
+            <div class="ann-title">Subscription Renewal Deadline — March 31, 2026</div>
+            <div class="ann-body">Members with expired subscriptions must renew by March 31 to retain scheme eligibility. Online payment available.</div>
+          </div>
+        </div>
+        <div class="announcement-item">
+          <div class="ann-date"><span class="ann-day">20</span>Feb 2026</div>
+          <div class="ann-content">
+            <span class="ann-tag">Health Scheme</span>
+            <div class="ann-title">New Hospitals Added to Health Scheme Network</div>
+            <div class="ann-body">Apollo Hospitals Guntur and Government General Hospital now accepting Health Scheme cashless claims.</div>
+          </div>
+        </div>
+        <div class="announcement-item">
+          <div class="ann-date"><span class="ann-day">10</span>Feb 2026</div>
+          <div class="ann-content">
+            <span class="ann-tag">Minutes</span>
+            <div class="ann-title">Minutes of Meeting — February 2026</div>
+            <div class="ann-body">Official MoM from the February committee meeting. <a href="#" style="color:var(--gold)">Download PDF →</a></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <!-- Query Form -->
+        <div class="query-form">
+          <div class="form-title">Submit a Query / Request</div>
+          <div class="form-group">
+            <label class="form-label">Query Type</label>
+            <select class="form-control">
+              <option>Certificate Download Issue</option>
+              <option>Payment Status</option>
+              <option>Scheme Eligibility</option>
+              <option>Document Re-upload</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Subject</label>
+            <input class="form-control" placeholder="Brief subject of your query">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Details</label>
+            <textarea class="form-control" rows="4" placeholder="Describe your query in detail..."></textarea>
+          </div>
+          <div style="background:#e8f0fe;border-radius:4px;padding:0.65rem 1rem;margin-bottom:1rem;font-size:0.75rem;color:#1a56c8">
+            <span class="ai-badge" style="background:#1a56c8;margin-right:0.4rem"><span class="ai-dot" style="background:#fff"></span>AI Agent</span> Common queries are auto-resolved within 2 minutes. Complex issues escalated to admin.
+          </div>
+          <button class="submit-btn">Submit Query</button>
+        </div>
+        <!-- My Queries -->
+        <div class="notif-card">
+          <div class="notif-header"><h3>My Query History</h3></div>
+          <div class="notif-list">
+            <div class="notif-item">
+              <div style="flex:1">
+                <div class="notif-text"><strong>Certificate Download Issue</strong> <span class="badge badge-active" style="margin-left:4px">Resolved</span></div>
+                <div class="notif-time">AI Agent resolved in 1 min · Feb 28, 2026</div>
+              </div>
+            </div>
+            <div class="notif-item">
+              <div style="flex:1">
+                <div class="notif-text"><strong>Housing Scheme Eligibility</strong> <span class="badge badge-approved" style="margin-left:4px">In Progress</span></div>
+                <div class="notif-time">Under admin review · Mar 2, 2026</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="name">🛡️ NPCWS</span>
+      <p>Nagarampalem Police Children Welfare Society — Serving police personnel and their families since 2008 with housing, health, and community welfare programs.</p>
+      <p style="margin-top:0.6rem;font-size:0.68rem;color:rgba(255,255,255,0.3)">Digital services powered by <span style="color:var(--gold-light)">Aksha Digital Foundation</span></p>
+    </div>
+    <div class="footer-col">
+      <h4>Member Services</h4>
+      <ul>
+        <li><a href="#">Register</a></li>
+        <li><a href="#">Member Login</a></li>
+        <li><a href="#">Pay Subscription</a></li>
+        <li><a href="#">Download ID Card</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Schemes</h4>
+      <ul>
+        <li><a href="#">Housing Scheme</a></li>
+        <li><a href="#">Health Scheme</a></li>
+        <li><a href="#">Scheme Eligibility</a></li>
+        <li><a href="#">Apply Online</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Information</h4>
+      <ul>
+        <li><a href="#">News & Circulars</a></li>
+        <li><a href="#">MoM Archive</a></li>
+        <li><a href="#">Photo Gallery</a></li>
+        <li><a href="#">Contact Admin</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Nagarampalem Police Children Welfare Society. All rights reserved.</p>
+    <p>Privacy Policy · Terms of Use</p>
+  </div>
+</footer>
+
+<script>
+function switchTab(tabId, el) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + tabId).classList.add('active');
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>
