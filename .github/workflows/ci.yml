@@ -16,7 +16,7 @@ jobs:
           node-version: 20
       - name: Install dependencies
         working-directory: client
-        run: npm ci
+        run: npm install
       - name: Lint
         working-directory: client
         run: npm run lint
