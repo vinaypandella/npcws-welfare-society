@@ -28,13 +28,10 @@ jobs:
         with:
           node-version: 22
       - name: Install dependencies
-        working-directory: client
         run: npm install
       - name: Lint
-        working-directory: client
         run: npm run lint
       - name: Build
-        working-directory: client
         run: npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v4
