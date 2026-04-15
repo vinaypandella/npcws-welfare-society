@@ -1,32 +1,15 @@
 {
   "name": "npcws-welfare-society",
-  "version": "1.0.0",
-  "description": "",
-  "type": "module",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/aksha-digital-foundation/npcws-welfare-society.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/aksha-digital-foundation/npcws-welfare-society/issues"
-  },
-  "homepage": "https://github.com/aksha-digital-foundation/npcws-welfare-society#readme",
-  "dependencies": {
-    "lucide-react": "^1.8.0",
-    "react": "^19.2.5",
-    "react-dom": "^19.2.5",
-    "react-router-dom": "^7.14.0"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-react": "^6.0.1",
-    "vite": "^8.0.8"
+    "dev": "npm run dev --workspace=client",
+    "build": "npm run build --workspace=client",
+    "preview": "npm run preview --workspace=client",
+    "lint": "npm run lint --workspace=client",
+    "check": "npm run lint --workspace=client && npm run build --workspace=client"
   }
 }

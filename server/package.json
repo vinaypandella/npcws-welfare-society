@@ -1,0 +1,11 @@
+{
+  "name": "npcws-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "NPCWS API server (Phase 2)",
+  "scripts": {
+    "dev": "echo 'Server not yet implemented — Phase 2'",
+    "start": "echo 'Server not yet implemented — Phase 2'"
+  }
+}
