@@ -28,7 +28,7 @@ jobs:
         with:
           node-version: 22
       - name: Install dependencies
-        run: npm install
+        run: rm -f package-lock.json client/package-lock.json && npm install
       - name: Lint
         run: npm run lint
       - name: Build
