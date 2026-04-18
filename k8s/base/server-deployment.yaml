@@ -1,0 +1,97 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: npcws-server
+  namespace: npcws
+  labels:
+    app: npcws-server
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: npcws-server
+  template:
+    metadata:
+      labels:
+        app: npcws-server
+    spec:
+      serviceAccountName: npcws-server-sa
+      containers:
+        - name: server
+          image: REGION-docker.pkg.dev/PROJECT_ID/npcws/server:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: PORT
+              value: "3000"
+            - name: NODE_ENV
+              value: "production"
+            - name: DB_HOST
+              value: "127.0.0.1"
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: npcws-db-credentials
+                  key: database
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: npcws-db-credentials
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: npcws-db-credentials
+                  key: password
+            - name: CORS_ORIGIN
+              value: "https://npcws.akshadigital.com"
+          resources:
+            requests:
+              cpu: 200m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi
+          livenessProbe:
+            httpGet:
+              path: /api/healthz
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /api/readyz
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 5
+
+        # Cloud SQL Proxy sidecar
+        - name: cloud-sql-proxy
+          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2
+          args:
+            - "--structured-logs"
+            - "--auto-iam-authn"
+            - "PROJECT_ID:asia-south1:npcws-db"
+          resources:
+            requests:
+              cpu: 50m
+              memory: 32Mi
+            limits:
+              cpu: 100m
+              memory: 64Mi
+          securityContext:
+            runAsNonRoot: true
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: npcws-server
+  namespace: npcws
+spec:
+  selector:
+    app: npcws-server
+  ports:
+    - port: 3000
+      targetPort: 3000

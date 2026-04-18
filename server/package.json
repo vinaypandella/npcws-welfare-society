@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "NPCWS API server (Phase 2)",
+  "description": "NPCWS Express API server",
   "scripts": {
-    "dev": "echo 'Server not yet implemented — Phase 2'",
-    "start": "echo 'Server not yet implemented — Phase 2'"
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "pg": "^8.13.0"
   }
 }

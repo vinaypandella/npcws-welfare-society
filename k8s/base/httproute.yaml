@@ -1,0 +1,22 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: npcws-routes
+  namespace: npcws
+spec:
+  parentRefs:
+    - name: npcws-gateway
+  rules:
+    # API traffic → server
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /api
+      backendRefs:
+        - name: npcws-server
+          port: 3000
+
+    # Everything else → client (React SPA)
+    - backendRefs:
+        - name: npcws-client
+          port: 80

@@ -7,9 +7,14 @@
   ],
   "scripts": {
     "dev": "npm run dev --workspace=client",
+    "dev:server": "npm run dev --workspace=server",
     "build": "npm run build --workspace=client",
     "preview": "npm run preview --workspace=client",
     "lint": "npm run lint --workspace=client",
-    "check": "npm run lint --workspace=client && npm run build --workspace=client"
+    "check": "npm run lint --workspace=client && npm run build --workspace=client",
+    "db:migrate": "cat db/migrations/*.sql | docker exec -i $(docker compose ps -q db) psql -U npcws -d npcws",
+    "db:seed": "cat db/seeds/*.sql | docker exec -i $(docker compose ps -q db) psql -U npcws -d npcws",
+    "docker:up": "docker compose up --build -d",
+    "docker:down": "docker compose down"
   }
 }

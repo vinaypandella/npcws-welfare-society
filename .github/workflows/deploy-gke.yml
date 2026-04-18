@@ -1,0 +1,67 @@
+name: Build & Deploy to GKE
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+env:
+  PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
+  REGION: asia-south1
+  REGISTRY: asia-south1-docker.pkg.dev
+  CLUSTER: npcws-cluster
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ vars.WIF_PROVIDER }}
+          service_account: ${{ vars.WIF_SERVICE_ACCOUNT }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Configure Docker for Artifact Registry
+        run: gcloud auth configure-docker ${{ env.REGISTRY }} --quiet
+
+      - name: Build and push client image
+        run: |
+          docker build -f docker/client.Dockerfile \
+            -t ${{ env.REGISTRY }}/${{ env.PROJECT_ID }}/npcws/client:${{ github.sha }} \
+            -t ${{ env.REGISTRY }}/${{ env.PROJECT_ID }}/npcws/client:latest \
+            .
+          docker push ${{ env.REGISTRY }}/${{ env.PROJECT_ID }}/npcws/client --all-tags
+
+      - name: Build and push server image
+        run: |
+          docker build -f docker/server.Dockerfile \
+            -t ${{ env.REGISTRY }}/${{ env.PROJECT_ID }}/npcws/server:${{ github.sha }} \
+            -t ${{ env.REGISTRY }}/${{ env.PROJECT_ID }}/npcws/server:latest \
+            .
+          docker push ${{ env.REGISTRY }}/${{ env.PROJECT_ID }}/npcws/server --all-tags
+
+      - name: Get GKE credentials
+        uses: google-github-actions/get-gke-credentials@v2
+        with:
+          cluster_name: ${{ env.CLUSTER }}
+          location: ${{ env.REGION }}
+
+      - name: Update image tags in manifests
+        run: |
+          cd k8s/base
+          sed -i "s|REGION-docker.pkg.dev/PROJECT_ID/npcws/client:latest|${{ env.REGISTRY }}/${{ env.PROJECT_ID }}/npcws/client:${{ github.sha }}|g" client-deployment.yaml
+          sed -i "s|REGION-docker.pkg.dev/PROJECT_ID/npcws/server:latest|${{ env.REGISTRY }}/${{ env.PROJECT_ID }}/npcws/server:${{ github.sha }}|g" server-deployment.yaml
+          sed -i "s|PROJECT_ID:asia-south1:npcws-db|${{ env.PROJECT_ID }}:asia-south1:npcws-db|g" server-deployment.yaml
+
+      - name: Deploy to GKE
+        run: kubectl apply -k k8s/overlays/production
